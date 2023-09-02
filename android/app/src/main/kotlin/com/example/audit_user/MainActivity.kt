@@ -1,4 +1,4 @@
-package com.example.audit_user
+package com.audit.audit_user
 
 import io.flutter.embedding.android.FlutterActivity
 
