@@ -1,10 +1,13 @@
 import 'package:audit_user/controller/logincontroller.dart';
 import 'package:audit_user/screens/companies/registercompany.dart';
 import 'package:audit_user/screens/payments/payments.dart';
+import 'package:audit_user/screens/searches/amountsearch.dart';
+import 'package:audit_user/screens/searches/paymentsearch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../constants/app_colors.dart';
 import 'amountreceived/addamountreceived.dart';
 import 'amountreceived/amountsreceived.dart';
@@ -64,6 +67,76 @@ class _HomePageState extends State<HomePage> {
   }
 
   final LoginController controller = Get.find();
+  void showInstalled() {
+    showMaterialModalBottomSheet(
+      context: context,
+      builder: (context) => Card(
+        elevation: 12,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10), topLeft: Radius.circular(10))),
+        child: SizedBox(
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Center(
+                  child: Text("Select",
+                      style: TextStyle(fontWeight: FontWeight.bold))),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const FetchAmountByDate());
+                      // Navigator.pop(context);
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/receive-money.png",
+                          width: 50,
+                          height: 50,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Text("Amount Received",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const FetchPaymentByDate());
+                      // Navigator.pop(context);
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/money.png",
+                          width: 50,
+                          height: 50,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Text("Payments",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const AmountsReceived());
                   },
                   child: menuWidget(
-                    title: 'Amount Received',
+                    title: 'Amount Summary',
                     imagePath: 'assets/images/corporate.png',
                   ),
                 )),
@@ -182,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const Payments());
                   },
                   child: menuWidget(
-                    title: 'Payments',
+                    title: 'Payment Summary',
                     imagePath: 'assets/images/money.png',
                   ),
                 )),
@@ -191,6 +264,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: primaryColor,
+      //   onPressed: () {
+      //     showInstalled();
+      //   },
+      //   child: const Icon(Icons.search_rounded, size: 30),
+      // ),
     );
   }
 }

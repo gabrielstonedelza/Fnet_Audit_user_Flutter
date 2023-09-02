@@ -363,7 +363,6 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
                         cursorColor: primaryColor,
                         cursorRadius: const Radius.elliptical(10, 10),
                         cursorWidth: 10,
-                        readOnly: true,
                         decoration: InputDecoration(
                             labelText: "Transaction Id",
                             labelStyle: const TextStyle(color: secondaryColor),
