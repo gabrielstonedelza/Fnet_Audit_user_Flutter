@@ -1,11 +1,7 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-
 import '../../constants/app_colors.dart';
 import '../../controller/companiescontroller.dart';
 import '../../widgets/loadingui.dart';

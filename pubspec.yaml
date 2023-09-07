@@ -54,6 +54,7 @@ dependencies:
   image_picker:
   image_cropper:
   dio:
+  full_screen_image:
 
 dev_dependencies:
   flutter_test:

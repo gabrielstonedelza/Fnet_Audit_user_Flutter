@@ -12,6 +12,7 @@ import '../constants/app_colors.dart';
 import 'amountreceived/addamountreceived.dart';
 import 'amountreceived/amountsreceived.dart';
 
+import 'calculatedenominations.dart';
 import 'companies/companies.dart';
 import 'loginview.dart';
 import 'payments/makepayment.dart';
@@ -146,6 +147,12 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {
+                Get.to(() => const CalculateDenominations());
+              },
+              icon: Image.asset("assets/images/accounting.png",
+                  width: 30, height: 30)),
+          IconButton(
+              onPressed: () {
                 Get.defaultDialog(
                     buttonColor: primaryColor,
                     title: "Confirm Logout",
@@ -172,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.white),
                         )));
               },
-              icon: const Icon(Icons.logout, size: 30))
+              icon: const Icon(Icons.logout, size: 30)),
         ],
       ),
       body: Column(
@@ -211,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const AddAmountReceived());
                   },
                   child: menuWidget(
-                    title: 'Add Amount',
+                    title: 'Add Receipt',
                     imagePath: 'assets/images/receive-money.png',
                   ),
                 )),
@@ -245,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const MakePayment());
                   },
                   child: menuWidget(
-                    title: 'Make Payment',
+                    title: 'Payment Receipt',
                     imagePath: 'assets/images/add.png',
                   ),
                 )),

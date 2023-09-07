@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart' as myGet;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -275,7 +274,7 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Add Amount"),
+          title: const Text("Add Receipt"),
           actions: [
             IconButton(
               onPressed: () {
@@ -364,7 +363,7 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
                         cursorRadius: const Radius.elliptical(10, 10),
                         cursorWidth: 10,
                         decoration: InputDecoration(
-                            labelText: "Transaction Id",
+                            labelText: "Receipt Number",
                             labelStyle: const TextStyle(color: secondaryColor),
                             focusColor: primaryColor,
                             fillColor: primaryColor,

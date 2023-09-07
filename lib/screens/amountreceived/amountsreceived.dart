@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 
 import '../../constants/app_colors.dart';
 import '../../controller/amountreceivedcontroller.dart';
-import '../../controller/companiescontroller.dart';
 
 class AmountsReceived extends StatefulWidget {
   const AmountsReceived({super.key});
@@ -37,11 +37,11 @@ class _AmountsReceivedState extends State<AmountsReceived> {
         body: GetBuilder<AmountReceivedController>(
           builder: (cController) {
             return ListView.builder(
-                itemCount: cController.allAmountReceived != null
-                    ? cController.allAmountReceived.length
+                itemCount: cController.allAmountReceivedPaid != null
+                    ? cController.allAmountReceivedPaid.length
                     : 0,
                 itemBuilder: (context, index) {
-                  items = cController.allAmountReceived[index];
+                  items = cController.allAmountReceivedPaid[index];
                   return Card(
                     color: secondaryColor,
                     elevation: 12,
@@ -84,18 +84,30 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 350,
-                            height: 200,
-                            child: Card(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            items['get_receipt_pic']))),
+                          Row(
+                            children: [
+                              FullScreenWidget(
+                                disposeLevel: DisposeLevel.High,
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: Card(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  items['get_receipt_pic']))),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
+                              const SizedBox(width: 20),
+                              const Text(
+                                "Tap to enlarge image",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

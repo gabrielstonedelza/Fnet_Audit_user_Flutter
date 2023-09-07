@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 
@@ -100,18 +101,42 @@ class _PaymentsState extends State<Payments> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 350,
-                            height: 200,
-                            child: Card(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(items[
-                                            'get_amount_received_receipt']))),
+                          Row(
+                            children: [
+                              FullScreenWidget(
+                                disposeLevel: DisposeLevel.High,
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: Card(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(items[
+                                                  'get_amount_received_receipt']))),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 20),
+                              const Text(
+                                "Tap to enlarge image",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 200,
+                          //   child: Card(
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //           image: DecorationImage(
+                          //               image: NetworkImage(items[
+                          //                   'get_amount_received_receipt']))),
+                          //     ),
+                          //   ),
+                          // ),
                           const Padding(
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             child: Center(
@@ -151,18 +176,44 @@ class _PaymentsState extends State<Payments> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 350,
-                            height: 200,
-                            child: Card(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
+                          Row(
+                            children: [
+                              FullScreenWidget(
+                                disposeLevel: DisposeLevel.High,
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: Card(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
                                         image: NetworkImage(
-                                            items['get_screenshot_pic']))),
+                                            items['get_screenshot_pic']),
+                                        fit: BoxFit.contain,
+                                      )),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 20),
+                              const Text(
+                                "Tap to enlarge image",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 200,
+                          //   child: Card(
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //           image: DecorationImage(
+                          //               image: NetworkImage(
+                          //                   items['get_screenshot_pic']))),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

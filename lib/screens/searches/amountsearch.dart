@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -63,7 +64,9 @@ class _FetchAmountByDateState extends State<FetchAmountByDate> {
       var jsonData = const Utf8Decoder().convert(codeUnits);
       allAmountReceived = json.decode(jsonData);
       amounts.assignAll(allAmountReceived);
-      print(amounts);
+      if (kDebugMode) {
+        print(amounts);
+      }
       for (var i in amounts) {
         sum = sum + double.parse(i['amount_received']);
       }

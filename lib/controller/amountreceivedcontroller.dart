@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 
 class AmountReceivedController extends GetxController {
   bool isLoading = true;
-  late List allAmountReceived = [];
+  late List allAmountReceivedNotPaid = [];
+  late List allAmountReceivedPaid = [];
   late List allAmounts = ["Select amount"];
   late List companyDetails = [];
   late String uToken = "";
@@ -34,35 +35,81 @@ class AmountReceivedController extends GetxController {
     if (storage.read("token") != null) {
       uToken = storage.read("token");
     }
-    fetchAmountReceived();
+    fetchAmountReceivedNotPaid();
+    fetchAmountReceivedPaid();
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      fetchAmountReceived();
+      fetchAmountReceivedNotPaid();
+      fetchAmountReceivedPaid();
     });
     super.onInit();
   }
 
-  Future<void> fetchAmountReceived() async {
+  Future<void> fetchAmountReceivedNotPaid() async {
     try {
       isLoading = true;
       const url =
-          "https://agencybankingnetwork.com/get_my_companies_amount_received/";
+          "https://agencybankingnetwork.com/get_my_companies_amount_received_not_paid/";
       var myLink = Uri.parse(url);
-      final response = await http.get(myLink, headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": "Token $uToken"
-      });
+      final response =
+          await http.get(myLink, headers: {"Authorization": "Token $uToken"});
 
       if (response.statusCode == 200) {
         final codeUnits = response.body.codeUnits;
         var jsonData = const Utf8Decoder().convert(codeUnits);
-        allAmountReceived = json.decode(jsonData);
-        for (var i in allAmountReceived) {
-          if (!allAmounts.contains(
-              i['amount_received'] + " " + "| " + i['id'].toString())) {
-            allAmounts
-                .add(i['amount_received'] + " " + "| " + i['id'].toString());
+        allAmountReceivedNotPaid = json.decode(jsonData);
+        for (var i in allAmountReceivedNotPaid) {
+          if (!allAmounts.contains(i['amount_received'] +
+              " " +
+              "| " +
+              i['id'].toString() +
+              " " +
+              "-" +
+              i['get_company_name'].toString().substring(0, 15) +
+              "%" +
+              i["company"].toString() +
+              "*" +
+              i['agent'].toString())) {
+            allAmounts.add(i['amount_received'] +
+                " " +
+                "| " +
+                i['id'].toString() +
+                " " +
+                "-" +
+                i['get_company_name'].toString().substring(0, 15) +
+                "%" +
+                i["company"].toString() +
+                "*" +
+                i['agent'].toString());
           }
         }
+        update();
+      } else {
+        if (kDebugMode) {
+          print(response.body);
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<void> fetchAmountReceivedPaid() async {
+    try {
+      isLoading = true;
+      const url =
+          "https://agencybankingnetwork.com/get_my_companies_amount_received_paid/";
+      var myLink = Uri.parse(url);
+      final response =
+          await http.get(myLink, headers: {"Authorization": "Token $uToken"});
+
+      if (response.statusCode == 200) {
+        final codeUnits = response.body.codeUnits;
+        var jsonData = const Utf8Decoder().convert(codeUnits);
+        allAmountReceivedPaid = json.decode(jsonData);
         update();
       } else {
         if (kDebugMode) {
