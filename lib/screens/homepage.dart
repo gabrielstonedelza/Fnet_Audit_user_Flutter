@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final LoginController controller = Get.find();
-  void showInstalled() {
+  void showOptions() {
     showMaterialModalBottomSheet(
       context: context,
       builder: (context) => Card(
@@ -198,7 +198,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const RegisterCompany());
                   },
                   child: menuWidget(
-                    title: 'Register Company',
+                    title1: 'Register',
+                    title2: 'Company',
                     imagePath: 'assets/images/corporate.png',
                   ),
                 )),
@@ -208,7 +209,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const Companies());
                   },
                   child: menuWidget(
-                    title: 'Companies',
+                    title1: 'Companies',
+                    title2: '',
                     imagePath: 'assets/images/corporate.png',
                   ),
                 )),
@@ -218,7 +220,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const AddAmountReceived());
                   },
                   child: menuWidget(
-                    title: 'Add Receipt',
+                    title1: 'Add',
+                    title2: 'Receipt',
                     imagePath: 'assets/images/receive-money.png',
                   ),
                 )),
@@ -242,7 +245,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const AmountsReceived());
                   },
                   child: menuWidget(
-                    title: 'Amount Summary',
+                    title1: 'Amount',
+                    title2: 'Summary',
                     imagePath: 'assets/images/corporate.png',
                   ),
                 )),
@@ -252,7 +256,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const MakePayment());
                   },
                   child: menuWidget(
-                    title: 'Payment Receipt',
+                    title1: 'Payment',
+                    title2: 'Receipt',
                     imagePath: 'assets/images/add.png',
                   ),
                 )),
@@ -262,7 +267,8 @@ class _HomePageState extends State<HomePage> {
                     Get.to(() => const Payments());
                   },
                   child: menuWidget(
-                    title: 'Payment Summary',
+                    title1: 'Payment',
+                    title2: 'Summary',
                     imagePath: 'assets/images/money.png',
                   ),
                 )),
@@ -271,22 +277,27 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: primaryColor,
-      //   onPressed: () {
-      //     showInstalled();
-      //   },
-      //   child: const Icon(Icons.search_rounded, size: 30),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        onPressed: () {
+          showOptions();
+        },
+        child: const Icon(Icons.search_rounded, size: 30),
+      ),
     );
   }
 }
 
 class menuWidget extends StatelessWidget {
-  String title;
+  String title1;
+  String title2;
   String imagePath;
 
-  menuWidget({super.key, required this.title, required this.imagePath});
+  menuWidget(
+      {super.key,
+      required this.title1,
+      required this.title2,
+      required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -300,9 +311,17 @@ class menuWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        Column(
+          children: [
+            Text(
+              title1,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              title2,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
         )
       ],
     );

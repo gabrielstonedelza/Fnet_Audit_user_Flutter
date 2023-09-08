@@ -125,18 +125,6 @@ class _PaymentsState extends State<Payments> {
                               ),
                             ],
                           ),
-                          // SizedBox(
-                          //   width: 350,
-                          //   height: 200,
-                          //   child: Card(
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //           image: DecorationImage(
-                          //               image: NetworkImage(items[
-                          //                   'get_amount_received_receipt']))),
-                          //     ),
-                          //   ),
-                          // ),
                           const Padding(
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             child: Center(
@@ -147,73 +135,1263 @@ class _PaymentsState extends State<Payments> {
                                       color: defaultTextColor2)),
                             ),
                           ),
-                          RowWidget(
-                            items: items,
-                            title: 'Amount Paid: ',
-                            itemTitle: 'amount'.toString(),
-                          ),
-                          RowWidget(
-                            items: items,
-                            title: 'Transaction Id: ',
-                            itemTitle: 'transaction_id',
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const Text("Date Paid: ",
-                                    style: TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                    items['date_paid']
-                                        .toString()
-                                        .split('T')
-                                        .first,
-                                    style: const TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Row(
+                          Column(
                             children: [
-                              FullScreenWidget(
-                                disposeLevel: DisposeLevel.High,
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: Card(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: NetworkImage(
-                                            items['get_screenshot_pic']),
-                                        fit: BoxFit.contain,
-                                      )),
-                                    ),
-                                  ),
+                              RowWidget(
+                                items: items,
+                                title: 'Amount Paid: ',
+                                itemTitle: 'amount1'.toString(),
+                              ),
+                              RowWidget(
+                                items: items,
+                                title: 'Transaction Id: ',
+                                itemTitle: 'transaction_id1',
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Row(
+                                  children: [
+                                    const Text("Date Paid: ",
+                                        style: TextStyle(
+                                            color: defaultTextColor1,
+                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                        items['date_paid']
+                                            .toString()
+                                            .split('T')
+                                            .first,
+                                        style: const TextStyle(
+                                            color: defaultTextColor1,
+                                            fontWeight: FontWeight.bold)),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(width: 20),
-                              const Text(
-                                "Tap to enlarge image",
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              Row(
+                                children: [
+                                  FullScreenWidget(
+                                    disposeLevel: DisposeLevel.High,
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: Card(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                            image: NetworkImage(
+                                                items['get_screenshot_pic1']),
+                                            fit: BoxFit.contain,
+                                          )),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  const Text(
+                                    "Tap to enlarge image",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          // SizedBox(
-                          //   width: 350,
-                          //   height: 200,
-                          //   child: Card(
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //           image: DecorationImage(
-                          //               image: NetworkImage(
-                          //                   items['get_screenshot_pic']))),
-                          //     ),
-                          //   ),
-                          // ),
+                          items['amount2'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount2'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id2',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic2']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount3'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount3'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id3',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic3']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount4'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount4'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id4',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic4']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount5'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount5'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id5',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic5']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount6'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount6'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id6',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic6']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount7'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount7'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id7',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic7']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount8'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount8'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id8',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic8']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount9'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount9'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id9',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic9']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount10'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount10'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id10',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic10']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount11'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount11'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id11',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic11']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount12'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount12'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id12',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic12']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount13'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount13'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id13',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic13']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount14'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount14'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id14',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic14']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount15'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount15'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id15',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic15']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount16'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount16'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id16',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic16']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount17'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount17'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id17',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic17']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount18'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount18'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id18',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic18']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount19'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount19'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id19',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic19']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          items['amount20'] != "0.00"
+                              ? Column(
+                                  children: [
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Amount Paid: ',
+                                      itemTitle: 'amount20'.toString(),
+                                    ),
+                                    RowWidget(
+                                      items: items,
+                                      title: 'Transaction Id: ',
+                                      itemTitle: 'transaction_id20',
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Text("Date Paid: ",
+                                              style: TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                              items['date_paid']
+                                                  .toString()
+                                                  .split('T')
+                                                  .first,
+                                              style: const TextStyle(
+                                                  color: defaultTextColor1,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        FullScreenWidget(
+                                          disposeLevel: DisposeLevel.High,
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Card(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                  image: NetworkImage(items[
+                                                      'get_screenshot_pic20']),
+                                                  fit: BoxFit.contain,
+                                                )),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        const Text(
+                                          "Tap to enlarge image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
                         ],
                       ),
                     ),

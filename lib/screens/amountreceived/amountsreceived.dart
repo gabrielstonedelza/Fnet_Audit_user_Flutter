@@ -84,6 +84,187 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                               ],
                             ),
                           ),
+                          items['d_200'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 200 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_200'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_100'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 100 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_100'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_50'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 50 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_50'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_20'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 20 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_20'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_10'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 10 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_10'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_5'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 5 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_5'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_2'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 2 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_2'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          items['d_1'] != 0
+                              ? Row(
+                                  children: [
+                                    const Text(
+                                      "GHS 1 Notes ➡️ ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      items['d_1'].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                )
+                              : Container(),
                           Row(
                             children: [
                               FullScreenWidget(

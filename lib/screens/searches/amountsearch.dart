@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -99,7 +100,7 @@ class _FetchAmountByDateState extends State<FetchAmountByDate> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: secondaryColor,
-          title: const Text("My Payments"),
+          title: const Text("Amount Received"),
         ),
         body: ListView(
           children: [
@@ -225,101 +226,85 @@ class _FetchAmountByDateState extends State<FetchAmountByDate> {
             isSearching
                 ? const LoadingUi()
                 : SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: Card(
+                    height: MediaQuery.of(context).size.height / 1.5,
+                    child: ListView.builder(
+                        itemCount: amounts != null ? amounts.length : 0,
+                        itemBuilder: (context, index) {
+                          items = amounts[index];
+                          return Card(
                             color: secondaryColor,
                             elevation: 12,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            // shadowColor: Colors.pink,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 18.0, bottom: 18),
-                              child: ListTile(
-                                title: Padding(
-                                  padding: const EdgeInsets.only(bottom: 15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                            child: ListTile(
+                              title: RowWidget(
+                                items: items,
+                                title: 'Name: ',
+                                itemTitle: 'get_company_name',
+                              ),
+                              subtitle: Column(
+                                children: [
+                                  RowWidget(
+                                    items: items,
+                                    title: 'Amount: ',
+                                    itemTitle: 'amount_received',
+                                  ),
+                                  RowWidget(
+                                    items: items,
+                                    title: 'Acc No: ',
+                                    itemTitle: 'account_number',
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Row(
+                                      children: [
+                                        const Text("Date: ",
+                                            style: TextStyle(
+                                                color: defaultTextColor1,
+                                                fontWeight: FontWeight.bold)),
+                                        Text(
+                                            items['date_received']
+                                                .toString()
+                                                .split('T')
+                                                .first,
+                                            style: const TextStyle(
+                                                color: defaultTextColor1,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            "Month: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
+                                      FullScreenWidget(
+                                        disposeLevel: DisposeLevel.High,
+                                        child: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: Card(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(items[
+                                                          'get_receipt_pic']))),
+                                            ),
                                           ),
-                                          Text(
-                                            _currentSelectedMonth,
-                                            style: const TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            "Year: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                          Text(
-                                            _currentSelectedYear,
-                                            style: const TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ],
+                                      const SizedBox(width: 20),
+                                      const Text(
+                                        "Tap to enlarge image",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Text(
-                                          "Commission: ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Commission = ${cashReceived - sum}",
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                ],
                               ),
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                          );
+                        }),
+                  ),
+            const SizedBox(height: 40)
           ],
         ),
       ),
@@ -336,5 +321,41 @@ class _FetchAmountByDateState extends State<FetchAmountByDate> {
     setState(() {
       _currentSelectedYear = newValueSelected;
     });
+  }
+}
+
+class RowWidget extends StatelessWidget {
+  String title;
+  String itemTitle;
+  RowWidget(
+      {super.key,
+      required this.items,
+      required this.title,
+      required this.itemTitle});
+
+  final items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(
+            title,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: defaultTextColor1),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0, bottom: 8),
+          child: Text(
+            items[itemTitle],
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: defaultTextColor1),
+          ),
+        ),
+      ],
+    );
   }
 }
