@@ -65,6 +65,16 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                             title: 'Acc No: ',
                             itemTitle: 'account_number',
                           ),
+                          RowWidget(
+                            items: items,
+                            title: 'Customer Name: ',
+                            itemTitle: 'teller_name',
+                          ),
+                          RowWidget(
+                            items: items,
+                            title: 'Customer No: ',
+                            itemTitle: 'teller_phone',
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Row(

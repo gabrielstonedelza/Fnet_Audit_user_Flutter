@@ -82,6 +82,18 @@ class _PaymentsState extends State<Payments> {
                             title: 'Transaction Id: ',
                             itemTitle: 'get_transaction_id',
                           ),
+                          RowWidget(
+                            items: items,
+                            title: 'Customer Name: ',
+                            itemTitle:
+                                'get_company_amount_received_teller_name',
+                          ),
+                          RowWidget(
+                            items: items,
+                            title: 'Customer No: ',
+                            itemTitle:
+                                'get_company_amount_received_teller_phone',
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Row(

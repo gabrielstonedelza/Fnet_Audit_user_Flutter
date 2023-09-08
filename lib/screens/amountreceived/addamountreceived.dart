@@ -43,6 +43,8 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
   late final TextEditingController _d5Controller;
   late final TextEditingController _d2Controller;
   late final TextEditingController _d1Controller;
+  late final TextEditingController _tellerNameController;
+  late final TextEditingController _tellerNumberController;
 
   FocusNode d200FocusNode = FocusNode();
   FocusNode d100FocusNode = FocusNode();
@@ -82,6 +84,8 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
     _d5Controller = TextEditingController();
     _d2Controller = TextEditingController();
     _d1Controller = TextEditingController();
+    _tellerNameController = TextEditingController();
+    _tellerNumberController = TextEditingController();
     controller.fetchAllMyCompanies();
   }
 
@@ -261,6 +265,8 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
         'amount_received': amountReceivedController.text,
         'company': controller.companyId,
         'transaction_id': transactionIdController.text,
+        "teller_name": _tellerNameController.text,
+        "teller_phone": _tellerNumberController.text,
         'receipt': await MultipartFile.fromFile(file.path, filename: fileName),
         "d_200": _d200Controller.text.trim(),
         "d_100": _d100Controller.text.trim(),
@@ -318,6 +324,8 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
     _d5Controller.dispose();
     _d2Controller.dispose();
     _d1Controller.dispose();
+    _tellerNumberController.dispose();
+    _tellerNameController.dispose();
     super.dispose();
   }
 
@@ -428,6 +436,58 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter amount";
+                          }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: TextFormField(
+                        controller: _tellerNameController,
+                        cursorColor: primaryColor,
+                        cursorRadius: const Radius.elliptical(10, 10),
+                        cursorWidth: 10,
+                        decoration: InputDecoration(
+                            labelText: "Customer Name",
+                            labelStyle: const TextStyle(color: secondaryColor),
+                            focusColor: primaryColor,
+                            fillColor: primaryColor,
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: primaryColor, width: 2),
+                                borderRadius: BorderRadius.circular(12)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        keyboardType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter name";
+                          }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: TextFormField(
+                        controller: _tellerNumberController,
+                        cursorColor: primaryColor,
+                        cursorRadius: const Radius.elliptical(10, 10),
+                        cursorWidth: 10,
+                        decoration: InputDecoration(
+                            labelText: "Customer Number",
+                            labelStyle: const TextStyle(color: secondaryColor),
+                            focusColor: primaryColor,
+                            fillColor: primaryColor,
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: primaryColor, width: 2),
+                                borderRadius: BorderRadius.circular(12)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter number";
                           }
                         },
                       ),
