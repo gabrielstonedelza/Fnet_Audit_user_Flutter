@@ -55,6 +55,46 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                       ),
                       subtitle: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Row(
+                              children: [
+                                const Text("Date: ",
+                                    style: TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                    items['date_received']
+                                        .toString()
+                                        .split('T')
+                                        .first,
+                                    style: const TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Row(
+                              children: [
+                                const Text("Time: ",
+                                    style: TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                    items['date_received']
+                                        .toString()
+                                        .split('T')
+                                        .last
+                                        .split(".")
+                                        .first,
+                                    style: const TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
                           RowWidget(
                             items: items,
                             title: 'Amount: ',
@@ -74,25 +114,6 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                             items: items,
                             title: 'Customer No: ',
                             itemTitle: 'teller_phone',
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const Text("Date: ",
-                                    style: TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                    items['date_received']
-                                        .toString()
-                                        .split('T')
-                                        .first,
-                                    style: const TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
                           ),
                           items['d_200'] != 0
                               ? Row(

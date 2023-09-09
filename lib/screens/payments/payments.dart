@@ -57,14 +57,44 @@ class _PaymentsState extends State<Payments> {
                       ),
                       subtitle: Column(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10, bottom: 10),
-                            child: Center(
-                              child: Text("Amount Received",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: defaultTextColor2)),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Row(
+                              children: [
+                                const Text("Date Received: ",
+                                    style: TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                    items['get_amount_received_date']
+                                        .toString()
+                                        .split('T')
+                                        .first,
+                                    style: const TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Row(
+                              children: [
+                                const Text("Time: ",
+                                    style: TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                    items['get_amount_received_date']
+                                        .toString()
+                                        .split('T')
+                                        .last
+                                        .split(".")
+                                        .first,
+                                    style: const TextStyle(
+                                        color: defaultTextColor1,
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
                           ),
                           RowWidget(
@@ -93,25 +123,6 @@ class _PaymentsState extends State<Payments> {
                             title: 'Customer No: ',
                             itemTitle:
                                 'get_company_amount_received_teller_phone',
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const Text("Date Received: ",
-                                    style: TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                    items['get_amount_received_date']
-                                        .toString()
-                                        .split('T')
-                                        .first,
-                                    style: const TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
                           ),
                           Row(
                             children: [
