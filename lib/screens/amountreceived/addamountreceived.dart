@@ -286,7 +286,7 @@ class _AddAmountReceivedState extends State<AddAmountReceived> {
         }, contentType: Headers.formUrlEncodedContentType),
       );
       if (response.statusCode != 201) {
-        Get.snackbar("Sorry", response.data.toString(),
+        Get.snackbar("Sorry", "something went wrong. Please try again",
             colorText: Colors.white,
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red);
