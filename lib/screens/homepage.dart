@@ -1,6 +1,7 @@
 import 'package:audit_user/controller/logincontroller.dart';
 import 'package:audit_user/screens/companies/registercompany.dart';
 import 'package:audit_user/screens/payments/payments.dart';
+import 'package:audit_user/screens/payments/paymentsummary.dart';
 import 'package:audit_user/screens/searches/amountsearch.dart';
 import 'package:audit_user/screens/searches/paymentsearch.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../constants/app_colors.dart';
 import 'amountreceived/addamountreceived.dart';
+import 'amountreceived/amountreceivedsummary.dart';
 import 'amountreceived/amountsreceived.dart';
 
 import 'calculatedenominations.dart';
@@ -242,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                     child: GestureDetector(
                   onTap: () {
-                    Get.to(() => const AmountsReceived());
+                    Get.to(() => const AmountReceivedSummary());
                   },
                   child: menuWidget(
                     title1: 'Amount',
@@ -264,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                     child: GestureDetector(
                   onTap: () {
-                    Get.to(() => const Payments());
+                    Get.to(() => const PaymentSummary());
                   },
                   child: menuWidget(
                     title1: 'Payment',

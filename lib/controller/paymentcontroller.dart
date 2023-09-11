@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class PaymentController extends GetxController {
   bool isLoading = true;
   late List allPayments = [];
+  late List allPaymentDates = [];
   late String uToken = "";
   final storage = GetStorage();
   late Timer _timer;
@@ -38,6 +39,12 @@ class PaymentController extends GetxController {
         final codeUnits = response.body.codeUnits;
         var jsonData = const Utf8Decoder().convert(codeUnits);
         allPayments = json.decode(jsonData);
+        for (var i in allPayments) {
+          if (!allPaymentDates
+              .contains(i['date_paid'].toString().split("T").first)) {
+            allPaymentDates.add(i['date_paid'].toString().split("T").first);
+          }
+        }
 
         update();
       } else {

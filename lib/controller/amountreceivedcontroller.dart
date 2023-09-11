@@ -10,6 +10,7 @@ class AmountReceivedController extends GetxController {
   bool isLoading = true;
   late List allAmountReceivedNotPaid = [];
   late List allAmountReceivedPaid = [];
+  late List allAmountReceivedPaidDates = [];
   late List allAmounts = ["Select amount"];
   late List companyDetails = [];
   late String uToken = "";
@@ -110,6 +111,13 @@ class AmountReceivedController extends GetxController {
         final codeUnits = response.body.codeUnits;
         var jsonData = const Utf8Decoder().convert(codeUnits);
         allAmountReceivedPaid = json.decode(jsonData);
+        for (var i in allAmountReceivedPaid) {
+          if (!allAmountReceivedPaidDates
+              .contains(i['date_received'].toString().split("T").first)) {
+            allAmountReceivedPaidDates
+                .add(i['date_received'].toString().split("T").first);
+          }
+        }
         update();
       } else {
         if (kDebugMode) {

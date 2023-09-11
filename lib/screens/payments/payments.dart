@@ -1,25 +1,62 @@
+import 'dart:convert';
+
+import 'package:audit_user/widgets/loadingui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
 import '../../constants/app_colors.dart';
-import '../../controller/amountreceivedcontroller.dart';
-import '../../controller/companiescontroller.dart';
 import '../../controller/paymentcontroller.dart';
 
 class Payments extends StatefulWidget {
-  const Payments({super.key});
+  final date_paid;
+  const Payments({super.key, required this.date_paid});
 
   @override
-  State<Payments> createState() => _PaymentsState();
+  State<Payments> createState() => _PaymentsState(date_paid: this.date_paid);
 }
 
 class _PaymentsState extends State<Payments> {
+  final date_paid;
+  _PaymentsState({required this.date_paid});
   final PaymentController controller = Get.find();
   late String uToken = "";
   final storage = GetStorage();
+  late List allPaymentDates = [];
+  bool isLoading = true;
+  late List allPayments = [];
   var items;
+  double sum = 0.0;
+
+  Future<void> fetchPayments() async {
+    const url = "https://agencybankingnetwork.com/get_my_companies_payments/";
+    var myLink = Uri.parse(url);
+    final response = await http.get(myLink, headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Token $uToken"
+    });
+
+    if (response.statusCode == 200) {
+      final codeUnits = response.body.codeUnits;
+      var jsonData = const Utf8Decoder().convert(codeUnits);
+      allPayments = json.decode(jsonData);
+      for (var i in allPayments) {
+        if (i['date_paid'].toString().split("T").first == date_paid) {
+          allPaymentDates.add(i);
+        }
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    } else {
+      if (kDebugMode) {
+        print(response.body);
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -30,20 +67,19 @@ class _PaymentsState extends State<Payments> {
         uToken = storage.read("token");
       });
     }
+    fetchPayments();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("My Payments")),
-        body: GetBuilder<PaymentController>(
-          builder: (cController) {
-            return ListView.builder(
-                itemCount: cController.allPayments != null
-                    ? cController.allPayments.length
-                    : 0,
+        appBar: AppBar(title: Text("Payments for $date_paid")),
+        body: isLoading
+            ? const LoadingUi()
+            : ListView.builder(
+                itemCount: allPaymentDates != null ? allPaymentDates.length : 0,
                 itemBuilder: (context, index) {
-                  items = cController.allPayments[index];
+                  items = allPaymentDates[index];
                   return Card(
                     color: secondaryColor,
                     elevation: 12,
@@ -1419,9 +1455,7 @@ class _PaymentsState extends State<Payments> {
                       ),
                     ),
                   );
-                });
-          },
-        ));
+                }));
   }
 }
 

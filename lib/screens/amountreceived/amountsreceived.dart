@@ -1,23 +1,62 @@
+import 'dart:convert';
+
+import 'package:audit_user/widgets/loadingui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart' as http;
 import '../../constants/app_colors.dart';
 import '../../controller/amountreceivedcontroller.dart';
 
 class AmountsReceived extends StatefulWidget {
-  const AmountsReceived({super.key});
+  final date_received;
+  const AmountsReceived({super.key, required this.date_received});
 
   @override
-  State<AmountsReceived> createState() => _AmountsReceivedState();
+  State<AmountsReceived> createState() =>
+      _AmountsReceivedState(date_received: this.date_received);
 }
 
 class _AmountsReceivedState extends State<AmountsReceived> {
+  final date_received;
+  _AmountsReceivedState({required this.date_received});
   final AmountReceivedController controller = Get.find();
   late String uToken = "";
   final storage = GetStorage();
   var items;
+  bool isLoading = true;
+  late List allAmountReceivedPaid = [];
+  late List allAmountReceivedPaidDates = [];
+  double sum = 0.0;
+
+  Future<void> fetchAmountReceivedPaid() async {
+    const url =
+        "https://agencybankingnetwork.com/get_my_companies_amount_received_paid/";
+    var myLink = Uri.parse(url);
+    final response =
+        await http.get(myLink, headers: {"Authorization": "Token $uToken"});
+
+    if (response.statusCode == 200) {
+      final codeUnits = response.body.codeUnits;
+      var jsonData = const Utf8Decoder().convert(codeUnits);
+      allAmountReceivedPaid = json.decode(jsonData);
+      for (var i in allAmountReceivedPaid) {
+        if (i['date_received'].toString().split("T").first == date_received) {
+          allAmountReceivedPaidDates.add(i);
+          sum = sum + double.parse(i['amount_received']);
+        }
+      }
+      setState(() {
+        isLoading = false;
+      });
+    } else {
+      if (kDebugMode) {
+        print(response.body);
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -28,20 +67,21 @@ class _AmountsReceivedState extends State<AmountsReceived> {
         uToken = storage.read("token");
       });
     }
+    fetchAmountReceivedPaid();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("My Amounts Received")),
-        body: GetBuilder<AmountReceivedController>(
-          builder: (cController) {
-            return ListView.builder(
-                itemCount: cController.allAmountReceivedPaid != null
-                    ? cController.allAmountReceivedPaid.length
+        appBar: AppBar(title: Text("Amounts for $date_received")),
+        body: isLoading
+            ? const LoadingUi()
+            : ListView.builder(
+                itemCount: allAmountReceivedPaidDates != null
+                    ? allAmountReceivedPaidDates.length
                     : 0,
                 itemBuilder: (context, index) {
-                  items = cController.allAmountReceivedPaid[index];
+                  items = allAmountReceivedPaidDates[index];
                   return Card(
                     color: secondaryColor,
                     elevation: 12,
@@ -324,9 +364,7 @@ class _AmountsReceivedState extends State<AmountsReceived> {
                       ),
                     ),
                   );
-                });
-          },
-        ));
+                }));
   }
 }
 
