@@ -73,298 +73,320 @@ class _AmountsReceivedState extends State<AmountsReceived> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Amounts for $date_received")),
-        body: isLoading
-            ? const LoadingUi()
-            : ListView.builder(
-                itemCount: allAmountReceivedPaidDates != null
-                    ? allAmountReceivedPaidDates.length
-                    : 0,
-                itemBuilder: (context, index) {
-                  items = allAmountReceivedPaidDates[index];
-                  return Card(
-                    color: secondaryColor,
-                    elevation: 12,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: ListTile(
-                      title: RowWidget(
-                        items: items,
-                        title: 'Name: ',
-                        itemTitle: 'get_company_name',
-                      ),
-                      subtitle: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const Text("Date: ",
-                                    style: TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                    items['date_received']
-                                        .toString()
-                                        .split('T')
-                                        .first,
-                                    style: const TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              children: [
-                                const Text("Time: ",
-                                    style: TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                                Text(
-                                    items['date_received']
-                                        .toString()
-                                        .split('T')
-                                        .last
-                                        .split(".")
-                                        .first,
-                                    style: const TextStyle(
-                                        color: defaultTextColor1,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          RowWidget(
-                            items: items,
-                            title: 'Amount: ',
-                            itemTitle: 'amount_received',
-                          ),
-                          RowWidget(
-                            items: items,
-                            title: 'Acc No: ',
-                            itemTitle: 'account_number',
-                          ),
-                          RowWidget(
-                            items: items,
-                            title: 'Customer Name: ',
-                            itemTitle: 'teller_name',
-                          ),
-                          RowWidget(
-                            items: items,
-                            title: 'Customer No: ',
-                            itemTitle: 'teller_phone',
-                          ),
-                          items['d_200'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 200 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_200'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_100'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 100 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_100'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_50'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 50 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_50'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_20'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 20 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_20'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_10'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 10 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_10'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_5'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 5 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_5'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_2'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 2 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_2'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          items['d_1'] != 0
-                              ? Row(
-                                  children: [
-                                    const Text(
-                                      "GHS 1 Notes ➡️ ",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      items['d_1'].toString(),
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
-                          Row(
+      appBar: AppBar(title: Text("Amounts for $date_received")),
+      body: isLoading
+          ? const LoadingUi()
+          : ListView.builder(
+              itemCount: allAmountReceivedPaidDates != null
+                  ? allAmountReceivedPaidDates.length
+                  : 0,
+              itemBuilder: (context, index) {
+                items = allAmountReceivedPaidDates[index];
+                return Card(
+                  color: secondaryColor,
+                  elevation: 12,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: ListTile(
+                    title: RowWidget(
+                      items: items,
+                      title: 'Name: ',
+                      itemTitle: 'get_company_name',
+                    ),
+                    subtitle: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Row(
                             children: [
-                              FullScreenWidget(
-                                disposeLevel: DisposeLevel.High,
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: Card(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  items['get_receipt_pic']))),
-                                    ),
+                              const Text("Date: ",
+                                  style: TextStyle(
+                                      color: defaultTextColor1,
+                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                  items['date_received']
+                                      .toString()
+                                      .split('T')
+                                      .first,
+                                  style: const TextStyle(
+                                      color: defaultTextColor1,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Row(
+                            children: [
+                              const Text("Time: ",
+                                  style: TextStyle(
+                                      color: defaultTextColor1,
+                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                  items['date_received']
+                                      .toString()
+                                      .split('T')
+                                      .last
+                                      .split(".")
+                                      .first,
+                                  style: const TextStyle(
+                                      color: defaultTextColor1,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                        RowWidget(
+                          items: items,
+                          title: 'Amount: ',
+                          itemTitle: 'amount_received',
+                        ),
+                        RowWidget(
+                          items: items,
+                          title: 'Acc No: ',
+                          itemTitle: 'account_number',
+                        ),
+                        RowWidget(
+                          items: items,
+                          title: 'Customer Name: ',
+                          itemTitle: 'teller_name',
+                        ),
+                        RowWidget(
+                          items: items,
+                          title: 'Customer No: ',
+                          itemTitle: 'teller_phone',
+                        ),
+                        items['d_200'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 200 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_200'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_100'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 100 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_100'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_50'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 50 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_50'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_20'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 20 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_20'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_10'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 10 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_10'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_5'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 5 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_5'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_2'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 2 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_2'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        items['d_1'] != 0
+                            ? Row(
+                                children: [
+                                  const Text(
+                                    "GHS 1 Notes ➡️ ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    items['d_1'].toString(),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        Row(
+                          children: [
+                            FullScreenWidget(
+                              disposeLevel: DisposeLevel.High,
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: Card(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                items['get_receipt_pic']))),
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 20),
-                              const Text(
-                                "Tap to enlarge image",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            const SizedBox(width: 20),
+                            const Text(
+                              "Tap to enlarge image",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  );
-                }));
+                  ),
+                );
+              }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        onPressed: () {
+          Get.defaultDialog(
+            buttonColor: secondaryColor,
+            title: "Total",
+            middleText: "$sum",
+            confirm: RawMaterialButton(
+                shape: const StadiumBorder(),
+                fillColor: secondaryColor,
+                onPressed: () {
+                  Get.back();
+                },
+                child: const Text(
+                  "Close",
+                  style: TextStyle(color: Colors.white),
+                )),
+          );
+        },
+        child: const Text("Total"),
+      ),
+    );
   }
 }
 
